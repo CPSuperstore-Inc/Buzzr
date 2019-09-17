@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+{% block title %}Buzzer{% endblock %}
+{% block body %}
+    <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        {% if 'name' in session %}
+            <br>
+            <a class="btn btn-primary" href="/buzzer/buzz" onclick="ding()">Buzz in!</a>
+        {% else %}
+                <form method="POST" action="/buzzer">
+                     <h3>Display Information</h3><hr>
+                  <div class="form-group row">
+                    <label for="name" class="col-4 col-form-label">Display Name</label> 
+                    <div class="col-8">
+                      <input id="name" name="name" type="text" class="form-control" aria-describedby="nameHelpBlock" required="required"> 
+                      <span id="nameHelpBlock" class="form-text text-muted">Must Be Unique</span>
+                    </div>
+                  </div> 
+                  <div class="form-group row">
+                    <div class="offset-4 col-8">
+                      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+    <script type="text/javascript">
+    var audio = new Audio('static/sound/buzz.mp3');
+
+    var url = new URL(location.href);
+    if (url.searchParams.get("ps") == "true"){
+        audio.play();
+    }
+        Vue.component('modal', {
+            template: '#modal-template'
+        })
+    
+        var app = new Vue({
+            el: '#app',
+            delimiters: ["${","}"],
+            data: {
+                test: "works"
+            },
+            methods: {
+            }
+        })
+	</script>
+{% endblock %}
+{% block foot %}{% endblock %}
