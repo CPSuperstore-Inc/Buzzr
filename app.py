@@ -61,13 +61,15 @@ def cont():
 
 @app.route("/buzzer/buzz")
 def buzz():
+    play_sound = "true"
     if start is None:
         flash("You Buzzed Too Early!")
+        play_sound = "false"
     else:
         delta = time() - start
         names[session["name"]] = delta
         flash("Clicked! Response Time: {}s".format(round(delta, 2)))
-    return redirect("/buzzer?ps=true")
+    return redirect("/buzzer?ps=" + play_sound)
 
 
 @app.route("/logout")

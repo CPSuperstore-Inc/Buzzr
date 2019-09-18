@@ -6,7 +6,7 @@
       <div class="col-lg-12 text-center">
         {% if 'name' in session %}
             <br>
-            <a class="btn btn-primary" href="/buzzer/buzz" onclick="ding()">Buzz in!</a>
+            <a class="btn btn-primary" href="/buzzer/buzz" onclick="ding()" style="padding: 100px 200px;">Buzz in!</a>
         {% else %}
                 <form method="POST" action="/buzzer">
                      <h3>Display Information</h3><hr>
